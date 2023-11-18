@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,18 +15,24 @@ namespace UdemyAbstractMethods.Entities
 
         public double HealthCosts { get; set; }
 
-        public Individual(double healthCosts, string name, double annualIncome) : base(name, annualIncome)
+        public Individual(string name, double annualIncome, double healthCosts) : base(name, annualIncome)
         {
             HealthCosts = healthCosts;
         }
 
-        protected override double CalculateTax()
+       
+        public override string ToString()
+        {
+            return base.ToString() + CalculateTax().ToString("F2", CultureInfo.InvariantCulture);
+        }
+
+        protected internal override double CalculateTax()
         {
             double tax = 0;
             if (AnnualIncome < 2000.00)
             {
                 tax = AnnualIncome * .15;
-                
+
             }
             else
             {

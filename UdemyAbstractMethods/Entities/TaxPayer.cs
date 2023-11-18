@@ -19,6 +19,11 @@ namespace UdemyAbstractMethods.Entities
             AnnualIncome = annualIncome;
         }
 
-        protected abstract double CalculateTax() { }
+        protected internal abstract double CalculateTax();
+
+        public override string ToString()
+        {
+            return Name+": $";
+        }
     }
 }
